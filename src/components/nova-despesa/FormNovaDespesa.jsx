@@ -5,10 +5,12 @@ function FormNovaDespesa(){
     const [despesas, setDespesas] = useState({
         id: Date.now(),
         nomeDespesas: "",
-        valorDespesas: "",
+        valorDespesas: 0,
         data: getDataHoje(),
         pago: false
     })
+
+    const [erro, setErro] = useState({})
 
     function getDataHoje(){
         const hoje = new Date()
@@ -20,11 +22,33 @@ function FormNovaDespesa(){
 
     function verifyInput(evt){
         const {name, value} = evt.target;
-        setDespesas((prev) => ({...prev, [name]: value}))
+        if (name === "valorDespesas"){
+            const onlyNumber = value.replace(/\D/g, "")
+            const numberFormat = new Intl.NumberFormat("pt-br", {style: "currency", currency:"BRL"}).format(parseFloat(onlyNumber) / 100)
+
+            setDespesas((prev)=> ({...prev, [name]: numberFormat}))
+        }
+
+        else
+        {
+            setDespesas((prev) => ({...prev, [name]: value}))
+        }
     }
 
     function handleSubmit(evt){
         evt.preventDefault()
+
+        const newErro = {}
+
+        if (!despesas.nomeDespesas.trim()){
+            newErro.nomeDespesas = "Nome é Obrigatório !!"
+        }
+
+        if (!despesas.valorDespesas){
+            newErro.valorDespesas = "Valor é obrigatório !!"
+        }
+
+        setErro(newErro)
 
         console.log(despesas)
     }
@@ -35,9 +59,7 @@ function FormNovaDespesa(){
             <input type="text" id="txtDespesa" name="nomeDespesas" onChange={verifyInput}/>
 
             <label htmlFor="txtValor">Valor: </label>
-            <input type="Number" name="valorDespesas" id="txtValor" onChange={verifyInput} onKeyDown={(evt)=>{if(['e', 'E', '+', '-'].includes(evt.key))
-                evt.preventDefault()
-            }}/>
+            <input type="text" name="valorDespesas" id="txtValor" value={despesas.valorDespesas} onChange={verifyInput}/>
 
             <label htmlFor="txtData">Data: </label>
             <input type="date" name="data" id="txtData" value={despesas.data} onChange={verifyInput}/>
