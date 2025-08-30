@@ -1,6 +1,7 @@
 import { useState } from "react";
+import styles from "./FormNovaDespesa.module.css"
 
-function FormNovaDespesa(){
+function FormNovaDespesa({onAddDespesa}){
 
     const [despesas, setDespesas] = useState({
         id: Date.now(),
@@ -11,6 +12,7 @@ function FormNovaDespesa(){
     })
 
     const [erro, setErro] = useState({})
+    const [styleErro, setStyleErro] = useState(false)
 
     function getDataHoje(){
         const hoje = new Date()
@@ -42,6 +44,7 @@ function FormNovaDespesa(){
 
         if (!despesas.nomeDespesas.trim()){
             newErro.nomeDespesas = "Nome é Obrigatório !!"
+            setStyleErro(true)
         }
 
         if (!despesas.valorDespesas){
@@ -50,13 +53,25 @@ function FormNovaDespesa(){
 
         setErro(newErro)
 
-        console.log(despesas)
+        console.log("ERRO:", erro)
+        console.log("Despesas:" ,despesas)
+        console.log("Object Key:" ,Object.keys(newErro))
+
+        if (Object.keys(newErro).length === 0){
+            setStyleErro(false)
+            onAddDespesa(despesas)
+            despesas.nomeDespesas = ""
+            despesas.valorDespesas = 0
+        }
+        else{
+
+        }
     }
 
     return(
         <form onSubmit={handleSubmit}>
             <label htmlFor="txtDespesa">Despesa: </label>
-            <input type="text" id="txtDespesa" name="nomeDespesas" onChange={verifyInput}/>
+            <input className={styleErro ? styles.inputError : ""} type="text" id="txtDespesa" name="nomeDespesas" value={despesas.nomeDespesas} onChange={verifyInput}/>
 
             <label htmlFor="txtValor">Valor: </label>
             <input type="text" name="valorDespesas" id="txtValor" value={despesas.valorDespesas} onChange={verifyInput}/>

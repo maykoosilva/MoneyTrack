@@ -3,15 +3,17 @@ import FormNovaDespesa from "./components/nova-despesa/FormNovaDespesa"
 
 function App() {
 
-  const [NovaDespesa, setNovaDespesa] = useState({
-    nomeDespesa: "",
-    valorDespesa: "",
-  })
+  const [despesas, setDespesas] = useState([])
+
+  function adicionarDespesas(novaDespesa){
+    setDespesas([...despesas, novaDespesa])
+  }
 
   return (
     <>
       <section>
-        <FormNovaDespesa/>
+        <FormNovaDespesa onAddDespesa={adicionarDespesas}/>
+        <p>{console.log("Despesas: " ,despesas)}</p>
       </section>
     </>
   )
