@@ -1,0 +1,20 @@
+.containerDespesas{
+    border: 0.1rem yellow solid;
+}
+
+.header{
+    border: 0.1rem cyan solid;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.header span{
+    border: 0.1rem red solid;
+    width: 20%;
+    text-align: center;
+}
+
+.containerDespesas .listDespesas{
+    display: flex;
+    justify-content: space-evenly;
+}

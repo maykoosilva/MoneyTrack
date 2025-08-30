@@ -53,15 +53,13 @@ function FormNovaDespesa({onAddDespesa}){
 
         setErro(newErro)
 
-        console.log("ERRO:", erro)
-        console.log("Despesas:" ,despesas)
-        console.log("Object Key:" ,Object.keys(newErro))
+        //console.log("ERRO:", erro)
+        //console.log("Despesas:" ,despesas)
+        //console.log("Object Key:" ,Object.keys(newErro))
 
         if (Object.keys(newErro).length === 0){
             setStyleErro(false)
             onAddDespesa(despesas)
-            despesas.nomeDespesas = ""
-            despesas.valorDespesas = 0
         }
         else{
 
