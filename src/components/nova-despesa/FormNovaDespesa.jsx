@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styles from "./FormNovaDespesa.module.css"
+import { v4 as uuidv4 } from "uuid";
 
 function FormNovaDespesa({onAddDespesa}){
 
     const [despesas, setDespesas] = useState({
-        id: Date.now(),
         nomeDespesas: "",
         valorDespesas: 0,
         data: getDataHoje(),
@@ -59,7 +59,10 @@ function FormNovaDespesa({onAddDespesa}){
 
         if (Object.keys(newErro).length === 0){
             setStyleErro(false)
-            onAddDespesa(despesas)
+
+            const novaDespesaComId = {id: uuidv4(), ...despesas}
+
+            onAddDespesa(novaDespesaComId)
         }
         else{
 

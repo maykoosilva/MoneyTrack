@@ -1,6 +1,9 @@
 import styles from "./ListaDespesas.module.css"
 
 function ListaDespesas({showList}){
+
+    const emptyObject = showList.every(item => Object.keys(item).length === 0);
+
     return(
         <div className={styles.containerDespesas}>
             <div className={styles.header}>
@@ -10,15 +13,18 @@ function ListaDespesas({showList}){
                 <span>EXIBIR</span>
             </div>
 
-
+            {console.log(showList)}
+            {console.log(emptyObject)}
 
             <ul className="listDespesas">
-                {showList.length !== 0 ? 
-                    showList.map((despesa)=>{
-                        return<li key={despesa.id}>{despesa.nomeDespesas}</li>
-                    }) 
+                {emptyObject ? 
+                    <p>{console.log("vazio")}</p>
                     :
-                    <p>{console.log(showList.id)}</p>
+                    showList.map((despesa)=>{
+                        console.log(despesa)
+                        return<li key={despesa.id}>{console.log(despesa.nomeDespesas)}</li>
+                    }) 
+                    
                 }
             </ul>
         </div>

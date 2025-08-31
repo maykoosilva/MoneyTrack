@@ -7,22 +7,38 @@ import "./App.css"
 function App() {
 
   const [despesas, setDespesas] = useState([])
-
-  //const [desp, setDesp] = useState([{data: "2025-08-30", valor: "R$4,00"}, {data: "2025-08-30", valor: "R$4,00"}])
-  const [agrupado, setAgrupado] = useState([])
+  const [agrupadoData, setAgrupadoData] = useState([])
 
   function adicionarDespesas(novaDespesa){
     setDespesas([...despesas, novaDespesa])
   }
 
+  useEffect(()=>{
+    const agrupado = despesas.reduce((acc, valorAgrupado)=>{
+      const mes = valorAgrupado.data.slice(0, 7)
+      const valorDespesa = parseFloat(valorAgrupado.valorDespesas.replace("R$", "").replace(",", "."))
+      
+      if (!acc[mes]){
+        acc[mes] = 0
+      }
+
+      acc[mes] += valorDespesa;
+      return acc
+
+    }, {})
+
+    setAgrupadoData([agrupado])
+  }, [despesas])
+
   return (
     <>
       <section>
         <FormNovaDespesa onAddDespesa={adicionarDespesas}/>
-        <p>{console.log("Despesas: " ,despesas)}</p>
+        {/*<p>{console.log("Agrupado", agrupadoData)}</p>*/}
+        {/*<p>{console.log("Despesas: " ,despesas)}</p>*/}
       </section>
       <section className="list-despesa">
-        <ListaDespesas showList={despesas}/>
+        <ListaDespesas showList={agrupadoData}/>
       </section>
     </>
   )
