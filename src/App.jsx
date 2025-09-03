@@ -27,7 +27,11 @@ function App() {
 
     }, {})
 
-    setAgrupadoData([agrupado])
+    const agrupadoArray = Object.entries(agrupado)
+
+    //console.log(agrupadoArray)
+
+    setAgrupadoData(agrupadoArray)
   }, [despesas])
 
   return (
@@ -36,10 +40,11 @@ function App() {
         <FormNovaDespesa onAddDespesa={adicionarDespesas}/>
         {/*<p>{console.log("Agrupado", agrupadoData)}</p>*/}
         {/*<p>{console.log("Despesas: " ,despesas)}</p>*/}
+        {console.log(agrupadoData.length === 0)}
       </section>
-      <section className="list-despesa">
+      {<section className="list-despesa">
         <ListaDespesas showList={agrupadoData}/>
-      </section>
+      </section>}
     </>
   )
 }
