@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import FormNovaDespesa from "./components/nova-despesa/FormNovaDespesa"
 import ListaDespesas from "./components/lista-despesas/ListaDespesas"
+import ItemDespesa from "./components/item-despesa/ItemDespesa"
 
 import "./App.css"
 
@@ -45,6 +46,10 @@ function App() {
       {<section className="list-despesa">
         <ListaDespesas showList={agrupadoData}/>
       </section>}
+
+      <section>
+        <ItemDespesa/>
+      </section>
     </>
   )
 }

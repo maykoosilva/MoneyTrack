@@ -21,7 +21,7 @@ function ListaDespesas({showList}){
                                     <span><button>EXIBIR</button></span>
                                 </li>
                             )
-                    })
+                    }) 
                 }
             </ul>
         </div>
