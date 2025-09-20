@@ -2,14 +2,14 @@ import styles from "./ListaDespesas.module.css"
 
 function ListaDespesas({showList}){
     return(
-        <div className={styles.containerDespesas}>
-            <div className={styles.header}>
-                <span>MÊS</span>
-                <span>VALOR</span>
-                <span>EXIBIR</span>
+        <div className={styles['container-despesas']}>
+            <div className={styles['header']}>
+                <span className={styles['span-font']}>MÊS</span>
+                <span className={styles['span-font']}>VALOR</span>
+                <span className={styles['span-font']}>EXIBIR</span>
             </div>
 
-            <ul className={styles.listDespesas}>
+            <ul className={styles['list-despesas']}>
                 {showList.length === 0 ? 
                     <p>{console.log("vazio")}</p>
                     :

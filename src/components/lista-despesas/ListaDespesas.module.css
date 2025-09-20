@@ -1,9 +1,15 @@
-.containerDespesas{
-    border: 0.4rem yellow solid;
+.container-despesas{
+    border: 0.2rem yellow solid;
+    padding: 1rem 0;
 }
 
+.header .span-font{
+    font-family: "Lato";
+    font-weight: 700;
+    font-size: 1.4rem;
+}
 
-.header, .containerDespesas .listDespesas li{
+.header, .container-despesas .list-despesas li{
     border: 0.2rem cyan solid;
     padding: 1rem;
     display: flex;
@@ -11,14 +17,14 @@
     align-items: center;
 }
 
-.containerDespesas .header span, .containerDespesas .listDespesas li span{
+.container-despesas .header span, .container-despesas .list-despesas li span{
     border: 0.1rem red solid;
     width: 20%;
     text-align: center;
 }
 
-.containerDespesas .listDespesas{
+.container-despesas .list-despesas{
     list-style: none;
-    border: 0.4rem blue solid;
+    border: 0.2rem blue solid;
 }
 

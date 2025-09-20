@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react"
 import FormNovaDespesa from "./components/nova-despesa/FormNovaDespesa"
 import ListaDespesas from "./components/lista-despesas/ListaDespesas"
-import ItemDespesa from "./components/item-despesa/ItemDespesa"
 
-import "./App.css"
+import style from "./App.module.css"
 
 function App() {
 
@@ -36,21 +35,23 @@ function App() {
   }, [despesas])
 
   return (
-    <>
-      <section>
-        <FormNovaDespesa onAddDespesa={adicionarDespesas}/>
-        {/*<p>{console.log("Agrupado", agrupadoData)}</p>*/}
-        {/*<p>{console.log("Despesas: " ,despesas)}</p>*/}
-        {console.log(agrupadoData.length === 0)}
-      </section>
-      {<section className="list-despesa">
-        <ListaDespesas showList={agrupadoData}/>
-      </section>}
+    <div className={style['container']}>
+    <header className={style['header']}>
+      <h1>HEADER</h1>
+      <nav className={style["bar-nav"]}>
+        <ul className={style['item-nav']}>
+          <li>Relatório Geral</li>
+          <li>Relatório Reduzido</li>
+        </ul>
+      </nav>
+    </header>
 
-      <section>
-        <ItemDespesa/>
-      </section>
-    </>
+
+      <main className={style['main']}>
+        <FormNovaDespesa onAddDespesa={adicionarDespesas}/>
+        <ListaDespesas showList={agrupadoData}/>
+      </main>
+    </div>
   )
 }
 

@@ -70,14 +70,14 @@ function FormNovaDespesa({onAddDespesa}){
     }
 
     return(
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="txtDespesa">Despesa: </label>
+        <form onSubmit={handleSubmit} className={styles['form']}>
+            <label htmlFor="txtDespesa" className={styles['font-label']}>Despesa: </label>
             <input className={styleErro ? styles.inputError : ""} type="text" id="txtDespesa" name="nomeDespesas" value={despesas.nomeDespesas} onChange={verifyInput}/>
 
-            <label htmlFor="txtValor">Valor: </label>
+            <label htmlFor="txtValor" className={styles['font-label']}>Valor: </label>
             <input type="text" name="valorDespesas" id="txtValor" value={despesas.valorDespesas} onChange={verifyInput}/>
 
-            <label htmlFor="txtData">Data: </label>
+            <label htmlFor="txtData" className={styles['font-label']}>Data: </label>
             <input type="date" name="data" id="txtData" value={despesas.data} onChange={verifyInput}/>
 
             <button type="submit">ENVIAR</button>
