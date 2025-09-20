@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import FormNovaDespesa from "./components/nova-despesa/FormNovaDespesa"
 import ListaDespesas from "./components/lista-despesas/ListaDespesas"
+import { converterParaNumero } from "./utils/converterParaNumero"
 
 import style from "./App.module.css"
 
@@ -16,7 +17,7 @@ function App() {
   useEffect(()=>{
     const agrupado = despesas.reduce((acc, valorAgrupado)=>{
       const mes = valorAgrupado.data.slice(0, 7)
-      const valorDespesa = parseFloat(valorAgrupado.valorDespesas.replace("R$", "").replace(",", "."))
+      const valorDespesa = converterParaNumero(valorAgrupado.valorDespesas)
       
       if (!acc[mes]){
         acc[mes] = 0
@@ -34,14 +35,16 @@ function App() {
     setAgrupadoData(agrupadoArray)
   }, [despesas])
 
+  console.log(agrupadoData)
+
   return (
     <div className={style['container']}>
     <header className={style['header']}>
-      <h1>HEADER</h1>
+      <h1>OKYAM</h1>
       <nav className={style["bar-nav"]}>
         <ul className={style['item-nav']}>
-          <li>Relatório Geral</li>
-          <li>Relatório Reduzido</li>
+          <li>RELATÓRIO GERAL</li>
+          <li>RELATÓRIO REDUZIDO</li>
         </ul>
       </nav>
     </header>

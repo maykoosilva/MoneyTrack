@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./FormNovaDespesa.module.css"
+import { formatarMonetario } from "../../utils/formatarMonetario";
 import { v4 as uuidv4 } from "uuid";
 
 function FormNovaDespesa({onAddDespesa}){
@@ -26,7 +27,7 @@ function FormNovaDespesa({onAddDespesa}){
         const {name, value} = evt.target;
         if (name === "valorDespesas"){
             const onlyNumber = value.replace(/\D/g, "")
-            const numberFormat = new Intl.NumberFormat("pt-br", {style: "currency", currency:"BRL"}).format(parseFloat(onlyNumber) / 100)
+            const numberFormat = formatarMonetario(onlyNumber)
 
             setDespesas((prev)=> ({...prev, [name]: numberFormat}))
         }
@@ -71,13 +72,13 @@ function FormNovaDespesa({onAddDespesa}){
 
     return(
         <form onSubmit={handleSubmit} className={styles['form']}>
-            <label htmlFor="txtDespesa" className={styles['font-label']}>Despesa: </label>
-            <input className={styleErro ? styles.inputError : ""} type="text" id="txtDespesa" name="nomeDespesas" value={despesas.nomeDespesas} onChange={verifyInput}/>
+            <label htmlFor="txtDespesa">Despesa</label>
+            <input className={styleErro ? styles['input-error'] : ""} type="text" id="txtDespesa" name="nomeDespesas" value={despesas.nomeDespesas} onChange={verifyInput}/>
 
-            <label htmlFor="txtValor" className={styles['font-label']}>Valor: </label>
+            <label htmlFor="txtValor">Valor</label>
             <input type="text" name="valorDespesas" id="txtValor" value={despesas.valorDespesas} onChange={verifyInput}/>
 
-            <label htmlFor="txtData" className={styles['font-label']}>Data: </label>
+            <label htmlFor="txtData">Data</label>
             <input type="date" name="data" id="txtData" value={despesas.data} onChange={verifyInput}/>
 
             <button type="submit">ENVIAR</button>

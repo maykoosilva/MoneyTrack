@@ -1,30 +1,47 @@
 .container-despesas{
-    border: 0.2rem yellow solid;
-    padding: 1rem 0;
+    /*border: 0.2rem yellow solid;*/
+    padding: 1rem 1rem;
 }
 
-.header .span-font{
+.header{
+    background-color: rgb(64, 159, 236);
+}
+  
+.container-despesas .header .span-font{
     font-family: "Lato";
     font-weight: 700;
     font-size: 1.4rem;
+    width: 20%;
+    text-align: center;
+    /*border: 0.1rem red solid;*/
 }
 
-.header, .container-despesas .list-despesas li{
-    border: 0.2rem cyan solid;
+.container-despesas .list-despesas{
+    border: 0.1rem blue solid;
+    list-style: none;
+}
+
+.container-despesas .list-despesas li:nth-child(odd){
+    background-color: #e1e1e1;
+}
+
+.container-despesas .list-despesas li:nth-child(even){
+    background-color: #f9f9f9;
+}
+
+.container-despesas .header, .container-despesas .list-despesas li{
+    /*border: 0.1rem rgb(255, 0, 255) solid;*/
     padding: 1rem;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    font-family: "Lato";
+    font-weight: 400;
+    font-size: 1.4rem;
 }
 
-.container-despesas .header span, .container-despesas .list-despesas li span{
-    border: 0.1rem red solid;
+.container-despesas .list-despesas li span{
+    /*border: 0.1rem red solid;*/
     width: 20%;
     text-align: center;
 }
-
-.container-despesas .list-despesas{
-    list-style: none;
-    border: 0.2rem blue solid;
-}
-

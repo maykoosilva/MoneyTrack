@@ -1,4 +1,5 @@
 import styles from "./ListaDespesas.module.css"
+import { formatarMonetario } from "../../utils/formatarMonetario";
 
 function ListaDespesas({showList}){
     return(
@@ -17,8 +18,8 @@ function ListaDespesas({showList}){
                         return(
                                 <li key={mes}>
                                     <span>{mes}</span>
-                                    <span>{valor}</span>
-                                    <span><button>EXIBIR</button></span>
+                                    <span>{formatarMonetario(valor)}</span>
+                                    <span>EXIBIR</span>
                                 </li>
                             )
                     }) 
