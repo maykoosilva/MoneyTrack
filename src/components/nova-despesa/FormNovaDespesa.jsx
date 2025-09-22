@@ -1,7 +1,16 @@
+import React from "react";
 import { useState } from "react";
 import styles from "./FormNovaDespesa.module.css"
 import { formatarMonetario } from "../../utils/formatarMonetario";
 import { v4 as uuidv4 } from "uuid";
+
+function getDataHoje(){
+    const hoje = new Date()
+    const dia = String(hoje.getDate()).padStart(2, "0")
+    const mes = String(hoje.getMonth() + 1).padStart(2, "0")
+    const ano = hoje.getFullYear();
+    return `${ano}-${mes}-${dia}`
+}
 
 function FormNovaDespesa({onAddDespesa}){
 
@@ -14,14 +23,6 @@ function FormNovaDespesa({onAddDespesa}){
 
     const [erro, setErro] = useState({})
     const [styleErro, setStyleErro] = useState(false)
-
-    function getDataHoje(){
-        const hoje = new Date()
-        const dia = String(hoje.getDate()).padStart(2, "0")
-        const mes = String(hoje.getMonth() + 1).padStart(2, "0")
-        const ano = hoje.getFullYear();
-        return `${ano}-${mes}-${dia}`
-    }
 
     function verifyInput(evt){
         const {name, value} = evt.target;
@@ -86,4 +87,4 @@ function FormNovaDespesa({onAddDespesa}){
     )
 }
 
-export default FormNovaDespesa;
+export default React.memo(FormNovaDespesa);

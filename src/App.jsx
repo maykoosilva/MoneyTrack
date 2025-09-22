@@ -4,17 +4,19 @@ import ListaDespesas from "./components/lista-despesas/ListaDespesas"
 import { converterParaNumero } from "./utils/converterParaNumero"
 
 import style from "./App.module.css"
+import { useCallback } from "react"
+import { useMemo } from "react"
 
 function App() {
 
   const [despesas, setDespesas] = useState([])
-  const [agrupadoData, setAgrupadoData] = useState([])
+  //const [agrupadoData, setAgrupadoData] = useState([])
 
-  function adicionarDespesas(novaDespesa){
+  const adicionarDespesas = useCallback((novaDespesa)=>{
     setDespesas([...despesas, novaDespesa])
-  }
+  }, [])
 
-  useEffect(()=>{
+  const agrupadoData = useMemo(()=>{
     const agrupado = despesas.reduce((acc, valorAgrupado)=>{
       const mes = valorAgrupado.data.slice(0, 7)
       const valorDespesa = converterParaNumero(valorAgrupado.valorDespesas)
@@ -29,10 +31,9 @@ function App() {
     }, {})
 
     const agrupadoArray = Object.entries(agrupado)
+    
+    return agrupadoArray;
 
-    //console.log(agrupadoArray)
-
-    setAgrupadoData(agrupadoArray)
   }, [despesas])
 
   console.log(agrupadoData)
