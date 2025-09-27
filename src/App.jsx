@@ -44,7 +44,7 @@ function App() {
       <h1>OKYAM</h1>
       <nav className={style["bar-nav"]}>
         <ul className={style['item-nav']}>
-          <li>RELATÓRIO GERAL</li>
+          <li>RELATÓoRIO GERAL</li>
           <li>RELATÓRIO REDUZIDO</li>
         </ul>
       </nav>
