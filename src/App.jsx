@@ -1,5 +1,8 @@
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
 import { useEffect, useState } from "react"
 import FormNovaDespesa from "./components/nova-despesa/FormNovaDespesa"
+import ResumoDoMes from "./components/resumo-do-mes/ResumoDoMes"
 import ListaDespesas from "./components/lista-despesas/ListaDespesas"
 import { converterParaNumero } from "./utils/converterParaNumero"
 
@@ -13,7 +16,7 @@ function App() {
   //const [agrupadoData, setAgrupadoData] = useState([])
 
   const adicionarDespesas = useCallback((novaDespesa)=>{
-    setDespesas([...despesas, novaDespesa])
+    setDespesas(prev => [...prev, novaDespesa])
   }, [])
 
   const agrupadoData = useMemo(()=>{
@@ -36,26 +39,31 @@ function App() {
 
   }, [despesas])
 
+  console.log(despesas)
+
   console.log(agrupadoData)
 
   return (
-    <div className={style['container']}>
-    <header className={style['header']}>
-      <h1>OKYAM</h1>
-      <nav className={style["bar-nav"]}>
-        <ul className={style['item-nav']}>
-          <li>RELATÓooRIO GERAL</li>
-          <li>RELATÓRIO REDUZIDO</li>
-        </ul>
-      </nav>
-    </header>
+
+      <div className={style['container']}>
+        <header className={style['header']}>
+          <h1>OKYAM</h1>
+          <nav className={style["bar-nav"]}>
+            <ul className={style['item-nav']}>
+              <li>RELATÓRIO GERAL</li>
+              <li>RELATÓRIO REDUZIDO</li>
+            </ul>
+          </nav>
+        </header>
 
 
-      <main className={style['main']}>
-        <FormNovaDespesa onAddDespesa={adicionarDespesas}/>
-        <ListaDespesas showList={agrupadoData}/>
-      </main>
-    </div>
+        <main className={style['main']}>
+          <FormNovaDespesa onAddDespesa={adicionarDespesas}/>
+          {/*<ResumoDoMes showList={agrupadoData}/>*/}
+          {<ListaDespesas despesas={despesas}/>}
+
+        </main>
+      </div>
   )
 }
 

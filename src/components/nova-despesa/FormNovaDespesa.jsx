@@ -18,7 +18,7 @@ function FormNovaDespesa({onAddDespesa}){
         nomeDespesas: "",
         valorDespesas: 0,
         data: getDataHoje(),
-        pago: false
+        pago: "teste"
     })
 
     const [erro, setErro] = useState({})

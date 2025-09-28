@@ -1,29 +1,24 @@
-import styles from "./ListaDespesas.module.css"
-import { formatarMonetario } from "../../utils/formatarMonetario";
+import styles from "../../styles/TabelaRelatorio.module.css"
+import HeaderTabela from "../tabela/HeaderTabela";
 
-function ListaDespesas({showList}){
+function ListaDespesas({despesas}){
+    const colunas = ["DATA", "DESPESA", "VALOR", "SITUAÇÃO"]
+
     return(
         <div className={styles['container-despesas']}>
-            <div className={styles['header']}>
-                <span className={styles['span-font']}>MÊS</span>
-                <span className={styles['span-font']}>VALOR</span>
-                <span className={styles['span-font']}>EXIBIR</span>
-            </div>
+            <HeaderTabela colunas={colunas}/>
 
             <ul className={styles['list-despesas']}>
-                {showList.length === 0 ? 
-                    <p>{console.log("vazio")}</p>
-                    :
-                    showList.map(([mes, valor])=>{
-                        return(
-                                <li key={mes}>
-                                    <span>{mes}</span>
-                                    <span>{formatarMonetario(valor)}</span>
-                                    <span>EXIBIR</span>
-                                </li>
-                            )
-                    }) 
-                }
+                {despesas.length === 0 ? console.log("Vazio !!") : despesas.map((data)=>{
+                    return(
+                        <li key={data.id}>
+                            <span>{data.data}</span>
+                            <span>{data.nomeDespesas}</span>
+                            <span>{data.valorDespesas}</span>
+                            <span>{data.pago}</span>
+                        </li>
+                    )
+                })}
             </ul>
         </div>
     )
