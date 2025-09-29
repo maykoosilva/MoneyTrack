@@ -44,7 +44,7 @@ function App() {
   console.log(agrupadoData)
 
   return (
-
+    <Router>
       <div className={style['container']}>
         <header className={style['header']}>
           <h1>OKYAM</h1>
@@ -58,12 +58,22 @@ function App() {
 
 
         <main className={style['main']}>
-          <FormNovaDespesa onAddDespesa={adicionarDespesas}/>
-          {/*<ResumoDoMes showList={agrupadoData}/>*/}
-          {<ListaDespesas despesas={despesas}/>}
+          <Routes>
+            <Route path='/' 
+              element={
+                <>
+                  <FormNovaDespesa onAddDespesa={adicionarDespesas}/>
+                  <ResumoDoMes showList={agrupadoData}/>
+                </>
+              }
+            />
+            {/*<ListaDespesas despesas={despesas}/>*/}
+            <Route path='/lista/:mes' element={<ListaDespesas despesas={despesas}/>}/>
+          </Routes>
 
         </main>
       </div>
+    </Router>
   )
 }
 

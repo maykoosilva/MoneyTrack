@@ -1,4 +1,4 @@
-import styles from "./HeaderTabela.module.css"
+import styles from "../../styles/TabelaRelatorio.module.css"
 
 function HeaderTabela({colunas}){
     return(

@@ -5,7 +5,7 @@ function ListaDespesas({despesas}){
     const colunas = ["DATA", "DESPESA", "VALOR", "SITUAÇÃO"]
 
     return(
-        <div className={styles['container-despesas']}>
+        <div className={styles['container-despesas-lista-despesa']}>
             <HeaderTabela colunas={colunas}/>
 
             <ul className={styles['list-despesas']}>

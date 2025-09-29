@@ -1,22 +1,44 @@
-.container-despesas{
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+.header{
+    background-color: rgb(64, 159, 236);
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    font-family: "Lato";
+    font-weight: 700;
+    font-size: 1.4rem;
+    padding: 1rem 0;
+}
+
+.header .col{
+    width: 20%;
+    text-align: center;
+}
+
+.container-despesas-resumo, .container-despesas-lista-despesa{
     /*border: 0.2rem yellow solid;*/
     padding: 0rem 1rem;
 }
 
-.container-despesas .list-despesas{
+.container-despesas-lista-despesa{
+    grid-column: 1 / -1;
+}
+
+.list-despesas{
     /*border: 0.1rem blue solid;*/
     list-style: none;
 }
 
-.container-despesas .list-despesas li:nth-child(odd){
+.list-despesas li:nth-child(odd){
     background-color: #e1e1e1;
 }
 
-.container-despesas .list-despesas li:nth-child(even){
+.list-despesas li:nth-child(even){
     background-color: #f9f9f9;
 }
 
-.container-despesas .list-despesas li{
+.list-despesas li{
     /*border: 0.1rem rgb(255, 0, 255) solid;*/
     padding: 1rem 0;
     display: flex;
@@ -27,7 +49,7 @@
     font-size: 1.4rem;
 }
 
-.container-despesas .list-despesas li span{
+li span{
     /*border: 0.1rem red solid;*/
     width: 20%;
     text-align: center;
