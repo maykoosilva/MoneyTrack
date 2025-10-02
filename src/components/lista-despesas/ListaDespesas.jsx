@@ -1,8 +1,15 @@
+import { useState } from "react";
 import styles from "../../styles/TabelaRelatorio.module.css"
 import HeaderTabela from "../tabela/HeaderTabela";
 
 function ListaDespesas({despesas}){
-    const colunas = ["DATA", "DESPESA", "VALOR", "SITUAÇÃO"]
+    const colunas = ["DATA", "DESPESA", "VALOR", "SITUAÇÃO", "EDITAR"]
+
+    //const [dataEdit, setDataEdit] = useState("")
+
+    function editarDespesa(despesa){
+        console.log(despesa)
+    }
 
     return(
         <div className={styles['container-despesas-lista-despesa']}>
@@ -16,6 +23,7 @@ function ListaDespesas({despesas}){
                             <span>{data.nomeDespesas}</span>
                             <span>{data.valorDespesas}</span>
                             <span>{data.pago}</span>
+                            <span><button onClick={()=>editarDespesa(data)}>EDITAR</button></span>
                         </li>
                     )
                 })}

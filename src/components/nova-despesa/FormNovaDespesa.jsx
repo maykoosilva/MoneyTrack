@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "./FormNovaDespesa.module.css"
 import { formatarMonetario } from "../../utils/formatarMonetario";
 import { v4 as uuidv4 } from "uuid";
+import { validarInput } from "../../utils/validarInput";
 
 function getDataHoje(){
     const hoje = new Date()
@@ -25,6 +26,7 @@ function FormNovaDespesa({onAddDespesa}){
     const [styleErro, setStyleErro] = useState(false)
 
     function verifyInput(evt){
+        //validarInput(evt, setDespesas)
         const {name, value} = evt.target;
         if (name === "valorDespesas"){
             const onlyNumber = value.replace(/\D/g, "")
@@ -55,19 +57,11 @@ function FormNovaDespesa({onAddDespesa}){
 
         setErro(newErro)
 
-        //console.log("ERRO:", erro)
-        //console.log("Despesas:" ,despesas)
-        //console.log("Object Key:" ,Object.keys(newErro))
-
         if (Object.keys(newErro).length === 0){
             setStyleErro(false)
 
-            const novaDespesaComId = {id: uuidv4(), ...despesas}
-
+            const novaDespesaComId = {id: despesas.id || uuidv4(), ...despesas}
             onAddDespesa(novaDespesaComId)
-        }
-        else{
-
         }
     }
 
