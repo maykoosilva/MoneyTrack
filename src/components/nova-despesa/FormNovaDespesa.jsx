@@ -1,9 +1,8 @@
-import React from "react";
-import { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./FormNovaDespesa.module.css"
 import { formatarMonetario } from "../../utils/formatarMonetario";
 import { v4 as uuidv4 } from "uuid";
-import { validarInput } from "../../utils/validarInput";
+import { DespesaContext } from "../../context/DespesaContext";
 
 function getDataHoje(){
     const hoje = new Date()
@@ -13,7 +12,8 @@ function getDataHoje(){
     return `${ano}-${mes}-${dia}`
 }
 
-function FormNovaDespesa({onAddDespesa}){
+function FormNovaDespesa(){
+    const { addExpense, selectedExpense, editExpense, setFormEditToggle } = useContext(DespesaContext)
 
     const [despesas, setDespesas] = useState({
         nomeDespesas: "",
@@ -21,6 +21,12 @@ function FormNovaDespesa({onAddDespesa}){
         data: getDataHoje(),
         pago: "teste"
     })
+
+    useEffect(()=>{
+        if(selectedExpense){
+            setDespesas((prev)=> ({...prev, ...selectedExpense}))
+        }
+    }, [selectedExpense])
 
     const [erro, setErro] = useState({})
     const [styleErro, setStyleErro] = useState(false)
@@ -61,7 +67,17 @@ function FormNovaDespesa({onAddDespesa}){
             setStyleErro(false)
 
             const novaDespesaComId = {id: despesas.id || uuidv4(), ...despesas}
-            onAddDespesa(novaDespesaComId)
+
+            if(selectedExpense){
+                editExpense(selectedExpense.id, novaDespesaComId)
+                setFormEditToggle((prev)=> !prev)
+                setDespesas({nomeDespesas: "", valorDespesas: 0, data: getDataHoje(), pago: "teste"})
+
+            }
+            else{
+                addExpense(novaDespesaComId)
+                setDespesas({nomeDespesas: "", valorDespesas: 0, data: getDataHoje(), pago: "teste"})
+            }
         }
     }
 
@@ -76,9 +92,9 @@ function FormNovaDespesa({onAddDespesa}){
             <label htmlFor="txtData">Data</label>
             <input type="date" name="data" id="txtData" value={despesas.data} onChange={verifyInput}/>
 
-            <button type="submit">ENVIAR</button>
+            {selectedExpense ? (<button type="submit">Salvar</button>) : (<button type="submit">Enviar</button>)}
         </form>
     )
 }
 
-export default React.memo(FormNovaDespesa);
+export default FormNovaDespesa;

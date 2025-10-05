@@ -3,8 +3,12 @@ import { Link } from "react-router-dom"
 import styles from "../../styles/TabelaRelatorio.module.css"
 import { formatarMonetario } from "../../utils/formatarMonetario";
 import HeaderTabela from "../tabela/HeaderTabela";
+import { DespesaContext } from "../../context/DespesaContext";
+import React, { useContext } from "react";
 
-function ResumoDoMes({showList}){
+function ResumoDoMes(){
+    const { groupedByDate } = useContext(DespesaContext)
+    console.log(groupedByDate)
     const colunas = ["MÊS", "VALOR", "EXIBIR"]
 
     return(
@@ -12,7 +16,7 @@ function ResumoDoMes({showList}){
             <HeaderTabela colunas={colunas}/>
 
             <ul className={styles['list-despesas']}>
-                {showList.length === 0 ? <p>{console.log("vazio")}</p> : showList.map(([mes, valor])=>{
+                {groupedByDate.length === 0 ? <p>{console.log("vazio")}</p> : groupedByDate.map(([mes, valor])=>{
                     return(
                         <li key={mes}>
                             <span>{mes}</span>
@@ -30,4 +34,4 @@ function ResumoDoMes({showList}){
     )
 }
 
-export default ResumoDoMes;
+export default React.memo(ResumoDoMes);
