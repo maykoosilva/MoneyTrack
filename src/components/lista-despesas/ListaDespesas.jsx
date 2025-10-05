@@ -1,10 +1,13 @@
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import styles from "../../styles/TabelaRelatorio.module.css"
 import HeaderTabela from "../tabela/HeaderTabela";
 import { DespesaContext } from "../../context/DespesaContext";
 import FormNovaDespesa from "../nova-despesa/FormNovaDespesa";
+import { useParams } from "react-router-dom";
 
 function ListaDespesas(){
+    const { mes } = useParams()
+    console.log(mes)
     const { expense, formEditToggle, setFormEditToggle, setSelectedExpense } = useContext(DespesaContext)
     const colunas = ["DATA", "DESPESA", "VALOR", "SITUAÇÃO", "EDITAR"]
 
@@ -13,12 +16,14 @@ function ListaDespesas(){
         setFormEditToggle(prev => !prev)
     }
 
+    const expenseFilter = expense.filter((data)=> data.data.slice(0, 7) === mes)
+
     return(
         <div className={styles['container-despesas-lista-despesa']}>
             <HeaderTabela colunas={colunas}/>
 
             <ul className={styles['list-despesas']}>
-                {expense.length === 0 ? console.log("Vazio !!") : expense.map((data)=>{
+                {expenseFilter.length === 0 ? console.log("Vazio !!") : expenseFilter.map((data)=>{
                     return(
                         <li key={data.id}>
                             <span>{data.data}</span>

@@ -14,7 +14,7 @@ export function DespesaProvider({children}){
 
     const editExpense = useCallback((id, updateExpense)=>{
         setExpense((prev)=> prev.map((expense)=> expense.id === id ? {...expense, ...updateExpense} : expense))
-    })
+    }, [])
 
     const groupedByDate = useMemo(()=>{
         const grouped = expense.reduce((acc, valueGrouped)=>{
