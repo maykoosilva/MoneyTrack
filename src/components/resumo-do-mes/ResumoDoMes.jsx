@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-
-import styles from "../../styles/TabelaRelatorio.module.css"
+import styles from "./ResumoDoMes.module.css"
+import stylesGeneral from "../../styles/TabelaRelatorio.module.css"
 import { formatarMonetario } from "../../utils/formatarMonetario";
 import HeaderTabela from "../tabela/HeaderTabela";
 import { DespesaContext } from "../../context/DespesaContext";
@@ -12,24 +12,26 @@ function ResumoDoMes(){
     const colunas = ["MÊS", "VALOR", "EXIBIR"]
 
     return(
-        <div className={styles['container-despesas-resumo']}> 
-            <HeaderTabela colunas={colunas}/>
+        <div className={stylesGeneral['container-despesas-resumo']}> 
+            <div className={styles['containerTable']}>
+                <HeaderTabela colunas={colunas}/>
 
-            <ul className={styles['list-despesas']}>
-                {groupedByDate.length === 0 ? <p>{console.log("vazio")}</p> : groupedByDate.map(([mes, valor])=>{
-                    return(
-                        <li key={mes}>
-                            <span>{mes}</span>
-                            <span>{formatarMonetario(valor)}</span>
-                            <span>
-                                <Link to={`/lista/${mes}`}>
-                                <button>EXIBIR</button>
-                                </Link>
-                            </span>
-                        </li>
-                    )}) 
-                }
-            </ul>
+                <ul className={stylesGeneral['list-despesas']}>
+                    {groupedByDate.length === 0 ? <p>{console.log("vazio")}</p> : groupedByDate.map(([mes, valor])=>{
+                        return(
+                            <li key={mes}>
+                                <span>{mes}</span>
+                                <span>{formatarMonetario(valor)}</span>
+                                <span>
+                                    <Link to={`/lista/${mes}`}>
+                                    <button className={stylesGeneral['btn-report']}>EXIBIR</button>
+                                    </Link>
+                                </span>
+                            </li>
+                        )}) 
+                    }
+                </ul>
+            </div>
         </div>
     )
 }

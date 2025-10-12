@@ -30,7 +30,7 @@ function ListaDespesas(){
                             <span>{data.nomeDespesas}</span>
                             <span>{data.valorDespesas}</span>
                             <span>{data.pago}</span>
-                            <span><button onClick={()=>selectedExpense(data)}>EDITAR</button></span>
+                            <span><button className={styles['btn-report']} onClick={()=>selectedExpense(data)}>EDITAR</button></span>
                         </li>
                     )
                 })}
