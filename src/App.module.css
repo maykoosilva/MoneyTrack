@@ -8,12 +8,14 @@
 }
 
 html, body {
+  border: 0.1rem cyan solid;
   height: 100%; /* importante para altura funcionar */
   margin: 0;
   padding: 0;
 }
 
 .app-container {
+  border: 0.4rem orange solid;
   font-family: "Lato", sans-serif;
   min-height: 100vh;
   background-color: #f9f9f9;
