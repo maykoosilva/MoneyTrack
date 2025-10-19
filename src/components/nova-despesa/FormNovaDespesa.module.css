@@ -5,18 +5,23 @@
 }
 
 .form{
-    border-radius: 2rem;
-    height: 100%;
-    background-color: #F7F7F7;
+    border-radius: 1rem;
+    box-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.2);
     display: flex;
-    gap: 2rem;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    padding: 3rem 0;
+    gap: 2rem;
     font-family: "Lato", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+form:hover{
+    box-shadow: 0rem 0rem 2rem rgba(0, 0, 0, 0.5);
+    transform: scale(1.02);
 }
 
 
@@ -26,6 +31,13 @@
     padding: 0.5rem;
 }
 
-.form button{
-    background-color: rgb(91, 224, 64);
+.form .btnSendOrSave{
+    background-color: #36c457;
+    border: #36c457;
+    transition: all 0.1s;
+}
+
+.form .btnSendOrSave:hover{
+    box-shadow: 0rem 0rem 1rem #3bc436b0;
+    cursor: pointer;
 }

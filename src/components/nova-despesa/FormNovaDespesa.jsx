@@ -83,16 +83,13 @@ function FormNovaDespesa(){
 
     return(
         <form onSubmit={handleSubmit} className={styles['form']}>
-            <label htmlFor="txtDespesa">Despesa</label>
-            <input className={styleErro ? styles['input-error'] : ""} type="text" id="txtDespesa" name="nomeDespesas" value={despesas.nomeDespesas} onChange={verifyInput}/>
+            <input className={styleErro ? styles['input-error'] : ""} type="text" id="txtDespesa" name="nomeDespesas" value={despesas.nomeDespesas} onChange={verifyInput} placeholder="Despesa"/>
 
-            <label htmlFor="txtValor">Valor</label>
             <input type="text" name="valorDespesas" id="txtValor" value={despesas.valorDespesas} onChange={verifyInput}/>
 
-            <label htmlFor="txtData">Data</label>
             <input type="date" name="data" id="txtData" value={despesas.data} onChange={verifyInput}/>
 
-            {selectedExpense ? (<button type="submit">Salvar</button>) : (<button type="submit">Enviar</button>)}
+            {selectedExpense ? (<button type="submit" className={styles['btnSendOrSave']}>SALVAR</button>) : (<button type="submit" className={styles['btnSendOrSave']}>ENVIAR</button>)}
         </form>
     )
 }

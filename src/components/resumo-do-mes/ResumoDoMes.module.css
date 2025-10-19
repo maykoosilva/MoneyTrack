@@ -1,4 +1,12 @@
 .containerTable{
+    padding: 1rem;
+    box-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.2);
     border-radius: 2rem;
-    height: 80dvh;
+    min-height: 80dvh;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.containerTable:hover{
+    box-shadow: 0rem 0rem 2rem rgba(0, 0, 0, 0.5);
+    transform: scale(1.02);
 }

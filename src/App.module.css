@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 :root {
+  font-size: 62.5%;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -8,14 +9,13 @@
 }
 
 html, body {
-  border: 0.1rem cyan solid;
   height: 100%; /* importante para altura funcionar */
   margin: 0;
   padding: 0;
 }
 
 .app-container {
-  border: 0.4rem orange solid;
+  /*border: 0.4rem orange solid;*/
   font-family: "Lato", sans-serif;
   min-height: 100vh;
   background-color: #f9f9f9;
@@ -24,83 +24,55 @@ html, body {
 }
 
 .app-header {
-  background-color: #111;
+  background-color: #1f2733;
+  box-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
   color: #fff;
-  padding: 1.5rem 2rem;
+  padding: 1rem 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.app-title {
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1px;
+  max-width: 120rem;
+  width: 90%;
+  margin: 1rem auto;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .main-nav {
-  width: auto;
+  width: 50%;
 }
 
-.nav-list {
+.main-nav .nav-list {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
   list-style: none;
   font-size: 1.1rem;
 }
 
-.nav-item {
+.main-nav .nav-list .nav-item {
+  color: #f9f9f9;
+  width: 50%;
+  padding: 0.5rem;
   cursor: pointer;
   transition: color 0.3s;
+  text-align: center;
 }
 
-.nav-item:hover {
-  color: #00bcd4;
+.main-nav .nav-list .nav-item:hover{
+  text-shadow: 0rem 0rem 1rem white;
+}
+
+.main-nav .nav-list .nav-item .link{
+  color: #f9f9f9;
+  text-decoration: none;
 }
 
 .main-content {
-    border: 0.2rem red solid;
-  flex: 1; /* ocupa todo o espaço disponível entre header e possível footer */
-  display: flex;
-  justify-content: center; /* centraliza horizontalmente */
-  align-items: center; /* centraliza verticalmente */
-  gap: 2rem; /* espaço entre os dois blocos */
-  padding: 2rem;
-  box-sizing: border-box;
-}
-
-.main-content--lista {
-  /* estilo especial para a página de lista */
-  display: block;
-  padding: 3rem;
-  align-items: unset;
-  justify-content: unset;
-}
-
-.form-section,
-.summary-section{
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  padding: 1.5rem;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.form-section {
-  flex: 1; /* ocupa espaço proporcional */
-  max-width: 400px; /* limite máximo pra não ficar enorme */
-}
-
-.summary-section {
-  flex: 2; /* ocupa o dobro do espaço do form */
-  max-width: 700px;
-}
-
-.detailed-report{
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    height: 40rem;
+    max-width: 120rem;
+    width: 90%;
+    margin: 1rem auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    padding: 1rem;
 }
