@@ -38,11 +38,20 @@ html, body {
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
+.app-header h1{
+  flex: 1;
+}
+
 .main-nav {
-  width: 50%;
+  border: 0.1rem red solid;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .main-nav .nav-list {
+  border: 0.1rem blue solid;
+  flex: 1;
   display: flex;
   gap: 1rem;
   list-style: none;
