@@ -5,19 +5,25 @@ import { formatarMonetario } from "../../utils/formatarMonetario";
 import HeaderTabela from "../tabela/HeaderTabela";
 import { DespesaContext } from "../../context/DespesaContext";
 import React, { useContext } from "react";
+import { usePagination } from "../../hooks/usePagination";
 
 function ResumoDoMes(){
     const { groupedByDate } = useContext(DespesaContext)
-    console.log(groupedByDate)
+    const { currentPage, itemByPage, numOfPage, nextPage, backPage } = usePagination(groupedByDate.length)
     const colunas = ["MÊS", "VALOR", "EXIBIR"]
 
+    const pageInit = currentPage  * itemByPage
+    const pageEnd = pageInit + itemByPage
+
+    const expenseByPage = groupedByDate.slice(pageInit, pageEnd)
+
     return(
-        <div className={stylesGeneral['container-despesas-resumo']}> 
+        <div className={styles['container-despesas-resumo']}> 
             <div className={styles['containerTable']}>
                 <HeaderTabela colunas={colunas}/>
 
                 <ul className={stylesGeneral['list-despesas']}>
-                    {groupedByDate.length === 0 ? <p>{console.log("vazio")}</p> : groupedByDate.map(([mes, valor])=>{
+                    {expenseByPage.length === 0 ? <p>{console.log("vazio")}</p> : expenseByPage.map(([mes, valor])=>{
                         return(
                             <li key={mes}>
                                 <span>{mes}</span>
@@ -31,6 +37,15 @@ function ResumoDoMes(){
                         )}) 
                     }
                 </ul>
+                {console.log(expenseByPage.length)}
+                {groupedByDate.length > itemByPage &&(
+                    
+                    <div className={styles["pagination"]}>
+                        <button onClick={backPage} disabled={currentPage === 0}>{"<"}</button>
+                        {currentPage + 1} de {numOfPage}
+                        <button onClick={nextPage} disabled={currentPage === numOfPage - 1}>{">"}</button>
+                    </div>
+                )}
             </div>
         </div>
     )

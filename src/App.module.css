@@ -43,14 +43,14 @@ html, body {
 }
 
 .main-nav {
-  border: 0.1rem red solid;
+  /*border: 0.1rem red solid;*/
   flex: 1;
   display: flex;
   justify-content: flex-end;
 }
 
 .main-nav .nav-list {
-  border: 0.1rem blue solid;
+  /*border: 0.1rem blue solid;*/
   flex: 1;
   display: flex;
   gap: 1rem;
